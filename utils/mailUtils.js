@@ -1,11 +1,12 @@
 const {
-  config: { username, escapedPassword, recipients },
+  config: { recipients },
   APIConfig,
 } = require("../config/config");
+const { credentials } = require("../config/credentials");
 
 const send = require("gmail-send")({
-  user: username,
-  pass: unescape(escapedPassword),
+  user: credentials.username,
+  pass: unescape(credentials.escapedPassword),
   bcc: recipients,
   subject: "Latest version of create-react-app",
 });
