@@ -2,11 +2,27 @@ require("dotenv").config();
 
 const { getLatestDataFromGithub } = require("./utils/utils");
 
+// const express = require("express");
 const mongoose = require("mongoose");
+// const cors = require("cors");
 
+// const newsRouter = require("./routes/newsRouter");
 const newsModel = require("./models/newsModel");
 const { sendMail } = require("./utils/mailUtils");
-const { config } = require("./config/config");
+
+// const app = express();
+
+// app.use(cors());
+
+// app.use(express.json());
+
+// app.use("/api/news", newsRouter);
+
+// const port = process.env.PORT || 5000;
+
+// app.listen(port, () => {
+//   console.log("Server is running on port", port);
+// });
 
 const URI = process.env.MONGODB_URL;
 
@@ -20,17 +36,11 @@ mongoose.connect(
   },
   async (err) => {
     if (err) throw err;
-
     console.log("MongoDB is connected");
+    const { status: newVersionExists, data } = await getLatestDataFromGithub();
 
-    const response = await getLatestDataFromGithub();
-    const { status: newVersionExists } = response;
     if (newVersionExists) {
-      const { name: version } = response;
-      const text = `${config.textLine1} ${version}.\n\n${config.textLine2}: ${html_url}`;
-      const subject = `${config.appName} ${version} ${config.subjectPhrase}`;
-
-      sendMail({ text, subject });
+      sendMail();
     }
   }
 );
