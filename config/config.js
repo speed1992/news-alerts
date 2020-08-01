@@ -1,5 +1,5 @@
 exports.config = {
-  emailFeature: false,
+  emailFeature: true,
   emailExceptions: true,
   textLine1: "New create-react-app version just got released",
   textLine2: "Check details:",
