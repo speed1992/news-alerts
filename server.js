@@ -26,7 +26,7 @@ try {
         throw err;
       }
 
-      console.log("MongoDB is connected");
+      console.log("@@@@@@@@@@@@@@@@@@@MongoDB is connected@@@@@@@@@@@@@@@@@");
 
       const response = await getLatestDataFromGithub();
       const { status: newVersionExists } = response;
