@@ -19,14 +19,12 @@ exports.getLatestDataFromGithub = async () => {
 
     const { name: version } = data;
 
-    debugger;
-
     const status = await checkIfVersionExistsInDatabase(version);
 
     const newVersionExists = !status;
 
     if (!status) {
-      console.log("new version came");
+      console.log("new version came", version);
       return {
         status: newVersionExists,
         data: { ...data },

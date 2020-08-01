@@ -1,19 +1,15 @@
 const newsModel = require("../models/newsModel");
-
-const createRecord = async function (version) {
-  const newNews = new newsModel({
-    news_title: "CRA-latest-version",
-    info: version,
-  });
-
-  await newNews.save();
-};
-
 async function checkIfNewsExists(news, version) {
-  debugger;
   try {
     if (!news) {
-      await createRecord(version);
+      await newsModel.updateOne(
+        { news_title: "create-react-app" },
+        {
+          news_title: "create-react-app",
+          info: version,
+        },
+        { upsert: true }
+      );
       return false;
     }
   } catch (e) {
