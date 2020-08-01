@@ -14,6 +14,8 @@ getURL = () => {
 exports.getLatestDataFromGithub = async () => {
   const URL = getURL();
 
+  console.log("@@@@@@@@@@@@@@@@@@@", URL, "@@@@@@@@@@@@@@@@@@@");
+
   try {
     const { data } = await axios.get(URL);
 
