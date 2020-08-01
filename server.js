@@ -9,6 +9,8 @@ const { config } = require("./config/config");
 
 const URI = process.env.MONGODB_URL;
 
+console.log("Apps@@@@@@@@@@@@@@@@@@@@Started");
+
 try {
   mongoose.connect(
     URI,
