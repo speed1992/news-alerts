@@ -4,7 +4,6 @@ const { getLatestDataFromGithub } = require("./utils/utils");
 
 const mongoose = require("mongoose");
 
-const newsModel = require("./models/newsModel");
 const { sendMail } = require("./utils/mailUtils");
 const { config } = require("./config/config");
 
