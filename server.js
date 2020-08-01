@@ -19,7 +19,10 @@ try {
       useFindAndModify: false,
     },
     async (err) => {
-      if (err) throw err;
+      if (err) {
+        console.log(err);
+        throw err;
+      }
 
       console.log("MongoDB is connected");
 
