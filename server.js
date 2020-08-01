@@ -52,10 +52,10 @@ try {
     e,
     "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
   );
-  // config.emailExceptions
-  //   ? sendMail({
-  //       text: JSON.stringify(e),
-  //       subject: "Failure in the news tool",
-  //     })
-  //   : true;
+  config.emailExceptions
+    ? sendMail({
+        text: JSON.stringify(e),
+        subject: "Failure in the news tool",
+      })
+    : true;
 }
