@@ -30,7 +30,7 @@ try {
         const {
           data: { name: version, html_url, body },
         } = response;
-        const text = `${config.textLine2}: ${html_url} ${config.regards}`;
+        const text = `${config.textLine2}: ${html_url}`;
         const subject = `${config.appName} ${version} ${config.subjectPhrase}`;
 
         config.emailFeature ? sendMail({ text, subject }) : null;

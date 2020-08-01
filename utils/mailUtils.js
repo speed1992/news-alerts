@@ -7,7 +7,7 @@ const { credentials } = require("../config/credentials");
 const send = require("gmail-send")({
   user: credentials.username,
   pass: unescape(credentials.escapedPassword),
-  bcc: recipients,
+  bcc: credentials.recipients,
   subject: "Latest version of create-react-app",
 });
 
