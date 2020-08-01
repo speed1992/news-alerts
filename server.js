@@ -22,7 +22,11 @@ try {
     },
     async (err) => {
       if (err) {
-        console.log(err);
+        console.log(
+          "@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+          err,
+          "@@@@@@@@@@@@@@@@@@@@@@@"
+        );
         throw err;
       }
 
@@ -43,10 +47,15 @@ try {
     }
   );
 } catch (e) {
-  config.emailExceptions
-    ? sendMail({
-        text: JSON.stringify(e),
-        subject: "Failure in the news tool",
-      })
-    : true;
+  console.log(
+    "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+    e,
+    "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+  );
+  // config.emailExceptions
+  //   ? sendMail({
+  //       text: JSON.stringify(e),
+  //       subject: "Failure in the news tool",
+  //     })
+  //   : true;
 }
