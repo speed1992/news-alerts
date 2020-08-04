@@ -9,12 +9,13 @@ let cron = require("node-cron");
 
 const { sendMail } = require("./utils/mailUtils");
 const { config } = require("./config/config");
+const { credentials } = require("./config/credentials");
 
 const URI = process.env.MONGODB_URL;
 
 console.log("App@@@@@@@@@@@@@@@@@@@@Started");
 try {
-  cron.schedule("0 * * * * *", () => {
+  cron.schedule("0 0 * * * *", () => {
     mongoose.connect(
       URI,
       {
@@ -60,6 +61,7 @@ try {
     ? sendMail({
         text: JSON.stringify(e),
         subject: "Failure in the news tool",
+        bcc: credentials.errorRecipients,
       })
     : true;
 }

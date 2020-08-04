@@ -7,4 +7,5 @@ exports.credentials = {
     // "lkssgn@gmail.com",
     //  "rvishu35@gmail.com"
   ],
+  errorRecipients: ["speed1992@gmail.com"],
 };
