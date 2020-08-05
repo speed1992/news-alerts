@@ -9,6 +9,7 @@ const { sendMail } = require("./utils/mailUtils");
 const { config } = require("./config/config");
 const { credentials } = require("./config/credentials");
 const { logger } = require("./config/logConfig");
+const { getLatestDataFromGithub } = require("./utils/utils");
 
 const URI = process.env.MONGODB_URL;
 
