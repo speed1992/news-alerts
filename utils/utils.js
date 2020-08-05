@@ -14,7 +14,7 @@ getURL = () => {
 exports.getLatestDataFromGithub = async () => {
   const URL = getURL();
 
-  console.log("@@@@@@@@@@@@@@@@@@@", URL, "@@@@@@@@@@@@@@@@@@@");
+  logger.info("@@@@@@@@@@@@@@@@@@@", URL, "@@@@@@@@@@@@@@@@@@@");
 
   try {
     const { data } = await axios.get(URL);
@@ -26,17 +26,17 @@ exports.getLatestDataFromGithub = async () => {
     const newVersionExists = !status;
 
     if (!status) {
-      console.log("new version came", version);
+      logger.info("new version came", version);
       return {
         status: newVersionExists,
         data: { ...data },
       };
     } else {
-      console.log("version exists");
+      logger.info("version exists");
       return { status: newVersionExists };
     }
   } catch (error) {
-    console.log(error);
+    logger.info(error);
   }
 };
 

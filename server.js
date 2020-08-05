@@ -33,7 +33,7 @@ try {
           throw err;
         }
 
-        console.log("@@@@@@@@@@@@@@@@@@@MongoDB is connected@@@@@@@@@@@@@@@@@");
+        logger.info("@@@@@@@@@@@@@@@@@@@MongoDB is connected@@@@@@@@@@@@@@@@@");
 
         const response = await getLatestDataFromGithub();
         const { status: newVersionExists } = response;
@@ -51,7 +51,7 @@ try {
     );
   });
 } catch (e) {
-  console.log(
+  logger.info(
     "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
     e,
     "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"

@@ -104,3 +104,9 @@ dist
 .tern-port
 
 .vercel
+
+logs.txt
+
+quick-start-combined.log
+
+quick-start-error.log
