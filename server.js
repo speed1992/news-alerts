@@ -1,4 +1,4 @@
-// process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "production";
 
 require("dotenv").config();
 
@@ -13,7 +13,7 @@ const { getLatestDataFromGithub } = require("./utils/utils");
 
 const URI = process.env.MONGODB_URL;
 
-logger.info("App@@@@@@@@@@@@@@@@@@@@Started");
+logger.info("App started.");
 try {
   cron.schedule("0 0 * * * *", () => {
     mongoose.connect(
@@ -30,7 +30,7 @@ try {
           throw err;
         }
 
-        logger.info("@@@@@@@@@@@@@@@@@@@MongoDB is connected@@@@@@@@@@@@@@@@@");
+        logger.info("MongoDB is connected");
 
         const response = await getLatestDataFromGithub();
         const { status: newVersionExists } = response;

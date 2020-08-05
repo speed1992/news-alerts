@@ -1,4 +1,9 @@
 const { createLogger, format, transports } = require("winston");
+const { printf } = format;
+
+const myFormat = printf(({ timestamp, level, message, meta }) => {
+  return `${timestamp};${level};${message};${meta ? JSON.stringify(meta) : ""}`;
+});
 
 const logger = createLogger({
   level: "info",
@@ -8,7 +13,7 @@ const logger = createLogger({
     }),
     format.errors({ stack: true }),
     format.splat(),
-    format.json()
+    myFormat
   ),
   // defaultMeta: { service: "your-service-name" },
   transports: [

@@ -1,6 +1,7 @@
 const axios = require("axios");
 const { checkIfVersionExistsInDatabase } = require("./dbutils");
 const { APIConfig } = require("../config/config");
+const { logger } = require("../config/logConfig");
 
 isEnvProduction = function () {
   return process.env.NODE_ENV === "production";
@@ -14,7 +15,7 @@ getURL = () => {
 exports.getLatestDataFromGithub = async () => {
   const URL = getURL();
 
-  logger.info("@@@@@@@@@@@@@@@@@@@", URL, "@@@@@@@@@@@@@@@@@@@");
+  logger.info("Hitting " + URL);
 
   try {
     const { data } = await axios.get(URL);
