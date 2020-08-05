@@ -3,6 +3,7 @@ const {
   APIConfig,
 } = require("../config/config");
 const { credentials } = require("../config/credentials");
+const { logger } = require("../config/logConfig");
 
 const send = require("gmail-send")({
   user: credentials.username,
@@ -14,6 +15,6 @@ const send = require("gmail-send")({
 exports.sendMail = async ({ text, subject }) => {
   send({ text, subject }, (error, result, fullResult) => {
     if (error) console.error(error);
-    console.log(result);
+    logger.info(result);
   });
 };

@@ -1,8 +1,6 @@
-process.env.NODE_ENV = "production";
+// process.env.NODE_ENV = "production";
 
 require("dotenv").config();
-
-const { getLatestDataFromGithub } = require("./utils/utils");
 
 const mongoose = require("mongoose");
 let cron = require("node-cron");
@@ -10,10 +8,11 @@ let cron = require("node-cron");
 const { sendMail } = require("./utils/mailUtils");
 const { config } = require("./config/config");
 const { credentials } = require("./config/credentials");
+const { logger } = require("./config/logConfig");
 
 const URI = process.env.MONGODB_URL;
 
-console.log("App@@@@@@@@@@@@@@@@@@@@Started");
+logger.info("App@@@@@@@@@@@@@@@@@@@@Started");
 try {
   cron.schedule("0 0 * * * *", () => {
     mongoose.connect(
@@ -26,7 +25,7 @@ try {
       },
       async (err) => {
         if (err) {
-          console.log(
+          logger.info(
             "@@@@@@@@@@@@@@@@@@@@@@@@@@@",
             err,
             "@@@@@@@@@@@@@@@@@@@@@@@"

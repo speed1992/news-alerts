@@ -1,4 +1,5 @@
 const newsModel = require("../models/newsModel");
+const { logger } = require("../config/logConfig");
 async function checkIfNewsExists(news, version) {
   try {
     if (!news) {
@@ -13,7 +14,7 @@ async function checkIfNewsExists(news, version) {
       return false;
     }
   } catch (e) {
-    console.log(e);
+    logger.info(e);
   }
   return true;
 }
@@ -21,7 +22,7 @@ async function checkIfNewsExists(news, version) {
 exports.checkIfVersionExistsInDatabase = async function (version) {
   let status = false;
   await newsModel.findOne({ info: version }, async (err, news) => {
-    console.log("news found?", news);
+    logger.info("news found?", news);
 
     if (!err) {
       status = await checkIfNewsExists(news, version);
