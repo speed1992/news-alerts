@@ -26,11 +26,7 @@ try {
       },
       async (err) => {
         if (err) {
-          logger.info(
-            "@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-            err,
-            "@@@@@@@@@@@@@@@@@@@@@@@"
-          );
+          logger.info(err);
           throw err;
         }
 
@@ -52,16 +48,12 @@ try {
     );
   });
 } catch (e) {
-  logger.info(
-    "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-    e,
-    "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-  );
-  config.emailExceptions
-    ? sendMail({
-        text: JSON.stringify(e),
-        subject: "Failure in the news tool",
-        bcc: credentials.errorRecipients,
-      })
-    : true;
+  if (config.emailExceptions) {
+    logger.info(e);
+    sendMail({
+      text: JSON.stringify(e),
+      subject: "Failure in the news tool",
+      bcc: credentials.errorRecipients,
+    });
+  }
 }
