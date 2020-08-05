@@ -14,7 +14,7 @@ const send = require("gmail-send")({
 
 exports.sendMail = async ({ text, subject }) => {
   send({ text, subject }, (error, result, fullResult) => {
-    if (error) console.error(error);
+    if (error) logger.info(error);
     logger.info(result);
   });
 };

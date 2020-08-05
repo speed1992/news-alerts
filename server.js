@@ -15,7 +15,7 @@ const URI = process.env.MONGODB_URL;
 
 logger.info("App started.");
 try {
-  cron.schedule("0 0 * * * *", () => {
+  cron.schedule("* * * * * *", () => {
     mongoose.connect(
       URI,
       {

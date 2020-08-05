@@ -27,7 +27,7 @@ exports.getLatestDataFromGithub = async () => {
     const newVersionExists = !status;
 
     if (!status) {
-      logger.info("new version came", version);
+      logger.info("new version came" + version);
       return {
         status: newVersionExists,
         data: { ...data },
@@ -38,6 +38,7 @@ exports.getLatestDataFromGithub = async () => {
     }
   } catch (error) {
     logger.info(error);
+    throw error;
   }
 };
 

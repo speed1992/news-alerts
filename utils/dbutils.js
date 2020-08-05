@@ -26,6 +26,8 @@ exports.checkIfVersionExistsInDatabase = async function (version) {
 
     if (!err) {
       status = await checkIfNewsExists(news, version);
+    } else {
+      throw err;
     }
   });
   return status;
