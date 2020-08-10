@@ -26,13 +26,13 @@ exports.getLatestDataFromGithub = async () => {
 
     const newVersionExists = !status;
 
-    if (!status) {
+    if (status === false) {
       logger.info("new version came" + version);
       return {
         status: newVersionExists,
         data: { ...data },
       };
-    } else {
+    } else if (status === true) {
       logger.info("version exists");
       return { status: newVersionExists };
     }
