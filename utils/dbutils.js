@@ -21,7 +21,7 @@ async function checkIfNewsExists(news, version) {
 
 exports.checkIfVersionExistsInDatabase = async function (version) {
   let status = false;
-  version = trim(version);
+  version = version.trim();
   await newsModel.findOne({ info: version }, async (err, news) => {
     logger.info("news found?\n" + news);
 
