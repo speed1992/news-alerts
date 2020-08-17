@@ -1,6 +1,6 @@
 const newsModel = require("../models/newsModel");
 const { logger } = require("../config/logConfig");
-async function checkIfNewsExists(news, version) {
+async function updateVersionInDB(news, version) {
   try {
     if (!news) {
       await newsModel.updateOne(
@@ -11,12 +11,10 @@ async function checkIfNewsExists(news, version) {
         },
         { upsert: true }
       );
-      return false;
     }
   } catch (e) {
     logger.info(e);
   }
-  return true;
 }
 
 exports.checkIfVersionExistsInDatabase = async function (version) {
@@ -26,7 +24,13 @@ exports.checkIfVersionExistsInDatabase = async function (version) {
     logger.info("news found?\n" + news);
 
     if (!err) {
-      status = await checkIfNewsExists(news, version);
+      if (news) {
+        logger.info("No need for updating DB");
+        status = true;
+      } else {
+        logger.info("updating version in DB " + version);
+        await updateVersionInDB(news, version);
+      }
     } else {
       throw err;
     }
