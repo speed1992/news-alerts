@@ -1,4 +1,4 @@
-// process.env.NODE_ENV = "production";
+process.env.NODE_ENV = "production"
 
 require("dotenv").config()
 const cron = require("node-cron")
@@ -10,9 +10,9 @@ const { connectWithDatabase } = require("./utils/dbutils")
 try {
   logger.info("App started.")
 
-  // cron.schedule("0 0 * * * *", () => {
-  connectWithDatabase([CRA])
-  // })
+  cron.schedule("0 0 * * * *", () => {
+    connectWithDatabase([CRA])
+  })
 } catch (e) {
   handleFaliure(e)
 }
