@@ -1,45 +1,83 @@
-const axios = require("axios");
-const { checkIfVersionExistsInDatabase } = require("./dbutils");
-const { APIConfig } = require("../config/config");
-const { logger } = require("../config/logConfig");
+const axios = require("axios")
+const { checkIfVersionExistsInDatabase } = require("./dbutils")
+const { APIConfig, config } = require("../config/config")
+const { logger } = require("../config/logConfig")
+const { sendMail } = require("./mailUtils")
+const { credentials } = require("../config/credentials")
 
-isEnvProduction = function () {
-  return process.env.NODE_ENV === "production";
-};
-getURL = () => {
-  if (isEnvProduction()) url = APIConfig.prod_URL;
-  else url = APIConfig.dev_URL;
-  return url;
-};
+const isEnvProduction = function () {
+  return process.env.NODE_ENV === "production"
+}
+const getURL = () => {
+  if (isEnvProduction()) return APIConfig.prod_URL
+  else return APIConfig.dev_URL
+}
 
-exports.getLatestDataFromGithub = async () => {
-  const URL = getURL();
+module.exports.getLatestDataFromGithub = async () => {
+  const URL = getURL()
 
-  logger.info("Hitting " + URL);
+  logger.info("Hitting " + URL)
 
   try {
-    const { data } = await axios.get(URL);
+    const { data } = await axios.get(URL)
 
-    const { name: version } = data;
+    const { name: version } = data
 
-    const status = await checkIfVersionExistsInDatabase(version);
+    const status = await checkIfVersionExistsInDatabase(version)
 
-    const newVersionExists = !status;
+    const newVersionExists = !status
 
     if (status === false) {
-      logger.info("new version came" + version);
+      logger.info("new version came" + version)
       return {
         status: newVersionExists,
-        data: { ...data },
-      };
+        data: { ...data }
+      }
     } else if (status === true) {
-      logger.info("version exists");
-      return { status: newVersionExists };
+      logger.info("version exists")
+      return { status: newVersionExists }
     }
   } catch (error) {
-    logger.info(error);
-    throw error;
+    logger.info(error)
+    throw error
   }
-};
+}
 
-exports.isEnvProduction = isEnvProduction;
+module.exports.CRA = async (err) => {
+  if (err) {
+    logger.info(err)
+    throw err
+  }
+
+  logger.info("MongoDB is connected")
+
+  const response = await this.getLatestDataFromGithub()
+  const { status: newVersionExists } = response
+
+  if (newVersionExists) {
+    const {
+      // eslint-disable-next-line camelcase,no-unused-vars
+      data: { name: version, html_url, body }
+    } = response
+    // eslint-disable-next-line camelcase
+    const text = `${config.textLine2}: ${html_url}`
+    const subject = `${config.appName} ${version} ${config.subjectPhrase}`
+
+    if (config.emailFeature && process.env.NODE_ENV === "production") {
+      sendMail({ text, subject })
+    }
+  }
+}
+
+module.exports.handleFaliure = (e) => {
+  if (config.emailExceptions && process.env.NODE_ENV === "production") {
+    logger.info(e)
+    sendMail({
+      text: JSON.stringify(e),
+      subject: "Failure in the news tool",
+      bcc: credentials.errorRecipients
+    })
+  }
+}
+
+module.exports.isEnvProduction = isEnvProduction

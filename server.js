@@ -1,61 +1,18 @@
-process.env.NODE_ENV = "production";
+// process.env.NODE_ENV = "production";
 
-require("dotenv").config();
+require("dotenv").config()
+const cron = require("node-cron")
 
-const mongoose = require("mongoose");
-let cron = require("node-cron");
+const { logger } = require("./config/logConfig")
+const { CRA, handleFaliure } = require("./utils/utils")
+const { connectWithDatabase } = require("./utils/dbutils")
 
-const { sendMail } = require("./utils/mailUtils");
-const { config } = require("./config/config");
-const { credentials } = require("./config/credentials");
-const { logger } = require("./config/logConfig");
-const { getLatestDataFromGithub } = require("./utils/utils");
-
-const URI = process.env.MONGODB_URL;
-
-logger.info("App started.");
 try {
-  cron.schedule("0 0 * * * *", () => {
-    mongoose.connect(
-      URI,
-      {
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useNewUrlParser: true,
-        useFindAndModify: false,
-      },
-      async (err) => {
-        if (err) {
-          logger.info(err);
-          throw err;
-        }
+  logger.info("App started.")
 
-        logger.info("MongoDB is connected");
-
-        const response = await getLatestDataFromGithub();
-        const { status: newVersionExists } = response;
-
-        if (newVersionExists) {
-          const {
-            data: { name: version, html_url, body },
-          } = response;
-          const text = `${config.textLine2}: ${html_url}`;
-          const subject = `${config.appName} ${version} ${config.subjectPhrase}`;
-
-          config.emailFeature && process.env.NODE_ENV === "production"
-            ? sendMail({ text, subject })
-            : null;
-        }
-      }
-    );
-  });
+  // cron.schedule("0 0 * * * *", () => {
+  connectWithDatabase([CRA])
+  // })
 } catch (e) {
-  if (config.emailExceptions && process.env.NODE_ENV === "production") {
-    logger.info(e);
-    sendMail({
-      text: JSON.stringify(e),
-      subject: "Failure in the news tool",
-      bcc: credentials.errorRecipients,
-    });
-  }
+  handleFaliure(e)
 }
