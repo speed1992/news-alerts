@@ -4,7 +4,7 @@ const { logger } = require("../config/logConfig")
 
 const URI = process.env.MONGODB_URL
 
-async function updateVersionInDB (news, version) {
+async function updateVersionInDB(news, version) {
   try {
     if (!news) {
       await newsModel.updateOne(
@@ -18,6 +18,7 @@ async function updateVersionInDB (news, version) {
     }
   } catch (e) {
     logger.info(e)
+    throw e
   }
 }
 

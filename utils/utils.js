@@ -27,14 +27,16 @@ module.exports.getLatestDataFromGithub = async () => {
 
     const newVersionExists = !status
 
-    if (status === false) {
-      logger.info("new version came" + version)
+    logger.info("New version exists? " + newVersionExists)
+
+    if (newVersionExists) {
+      logger.info("new version has come " + version)
       return {
         status: newVersionExists,
         data: { ...data }
       }
-    } else if (status === true) {
-      logger.info("version exists")
+    } else {
+      // logger.info("version already exists")
       return { status: newVersionExists }
     }
   } catch (error) {
@@ -49,7 +51,7 @@ module.exports.CRA = async (err) => {
     throw err
   }
 
-  logger.info("MongoDB is connected")
+  logger.info("\n\n\n\n\nMongoDB is connected")
 
   const response = await this.getLatestDataFromGithub()
   const { status: newVersionExists } = response
@@ -60,7 +62,7 @@ module.exports.CRA = async (err) => {
       data: { name: version, html_url, body }
     } = response
     // eslint-disable-next-line camelcase
-    const text = `${config.textLine2}: ${html_url}`
+    const text = `${config.textLine2} ${html_url}`
     const subject = `${config.appName} ${version} ${config.subjectPhrase}`
 
     if (config.emailFeature && process.env.NODE_ENV === "production") {
