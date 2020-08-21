@@ -23,16 +23,18 @@ async function updateVersionInDB(news, version) {
 }
 
 module.exports.checkIfVersionExistsInDatabase = async function (version) {
-  let status = false
+  let status
   version = version.trim()
   await newsModel.findOne({ info: version }, async (err, news) => {
     logger.info("news found?\n" + news)
+    logger.info("error " + err)
 
     if (!err) {
       if (news) {
         logger.info("No need for updating DB")
         status = true
       } else {
+        status = false
         logger.info("updating version in DB " + version)
         await updateVersionInDB(news, version)
       }

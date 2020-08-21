@@ -25,17 +25,19 @@ module.exports.getLatestDataFromGithub = async () => {
 
     const status = await checkIfVersionExistsInDatabase(version)
 
+    if (status === undefined) throw new Error("Status from db is undefined")
+
     const newVersionExists = !status
 
     logger.info("New version exists? " + newVersionExists)
 
-    if (newVersionExists) {
+    if (newVersionExists !== undefined && newVersionExists === true) {
       logger.info("new version has come " + version)
       return {
         status: newVersionExists,
         data: { ...data }
       }
-    } else {
+    } else if (newVersionExists !== undefined && newVersionExists === false) {
       // logger.info("version already exists")
       return { status: newVersionExists }
     }
@@ -56,7 +58,7 @@ module.exports.CRA = async (err) => {
   const response = await this.getLatestDataFromGithub()
   const { status: newVersionExists } = response
 
-  if (newVersionExists) {
+  if (newVersionExists !== undefined && newVersionExists === true) {
     const {
       // eslint-disable-next-line camelcase,no-unused-vars
       data: { name: version, html_url, body }
