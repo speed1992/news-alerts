@@ -28,7 +28,7 @@ escapedPassword: "your password"
     "yourEmailAddress@gmail.com",
     "anotherEmailAddress@gmail.com"
   ],
-  errorRecipients: ["youremailaddress@gmail.com"]
+  errorRecipients: ["youremailaddress@gmail.com", "anotherEmailAddress@gmail.com"]
 ```
 
 2) config/config.js
@@ -57,6 +57,14 @@ Change dev url in config/config.js
 ```javascript
 dev_URL: "https://jsonblob.com/api/f13430d8-d313-11ea-bb09-433dc46d1195"
 ```
+## Debug
+
+Error logs are made at 
+
+```
+/quick-start-combined.log
+```
+
 
 ## Further references
 
