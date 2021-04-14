@@ -83,3 +83,46 @@ Error logs are made at
 ```
 https://stackoverflow.com/questions/1753070/how-do-i-configure-git-to-ignore-some-files-locally
 ```
+
+## Deploy permanently on the local machine
+
+#### Install production process manager PM2
+
+```bash
+npm install pm2 -g
+```
+
+For windows, make a script
+
+```startNewsTool.bat```
+
+
+```
+pushd "E:\nodejsCrud"
+pm2 start server.js --name news-tool --time --log "E:\nodejsCrud\logs.txt"
+exit
+```
+
+* change the cd address in the below command to the local location of the project
+
+* change the log address to an empty server Log text file
+
+
+For macOS / Ubuntu, make a script
+
+```startNewsTool.sh```
+
+```
+pm2 start /home/paras/Desktop/news-alerts/server.js --name news-tool --time --log "/home/paras/pm2-logs/logs.txt"
+```
+
+#### Add this script to the startup of windows / macOS / Ubuntu
+
+## Start Monitoring
+To monitor the status of the service deployed, open PM2 Dashboard
+
+```bash
+pm2 monit
+```
+
+
