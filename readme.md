@@ -1,18 +1,19 @@
 # News Alerts
 
-
-
-
 ## Installation
 
 ```bash
 npm install
+```
+## To start the app
+
+```
 npm start
 ```
 
-## Usage
+## Complete Setup
 
-Change 
+#### Change 
 
 1) config/credentials.js 
 
