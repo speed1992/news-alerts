@@ -13,9 +13,14 @@ logger.info("App Running on " + process.env.NODE_ENV + " environment");
 try {
   logger.info("App started.")
 
-  cron.schedule("0 0 * * * *", () => {
-    connectWithDatabase([CRA])
-  })
+  if (process.env.NODE_ENV !== "production") {
+    connectWithDatabase([CRA]);
+  }
+  else{
+    cron.schedule("0 0 * * * *", () => {
+      connectWithDatabase([CRA])
+    })
+  }
 } catch (e) {
   handleFaliure(e)
 }
