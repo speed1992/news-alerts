@@ -8,7 +8,7 @@ const { config } = require("./config/config")
 
 process.env.NODE_ENV = config.appMode
 
-logger.info("App Running on " + process.env.NODE_ENV + " environment");
+logger.info("\n\n\nApp Running on " + process.env.NODE_ENV + " environment\n\n\n");
 
 try {
   logger.info("App started.")

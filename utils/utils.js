@@ -53,7 +53,7 @@ module.exports.CRA = async (err) => {
     throw err
   }
 
-  logger.info("\n\n\n\n\nMongoDB is connected")
+  logger.info("\n\n**MongoDB is connected**\n\n")
 
   const response = await this.getLatestDataFromGithub()
   const { status: newVersionExists } = response
