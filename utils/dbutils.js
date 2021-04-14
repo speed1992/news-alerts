@@ -1,8 +1,9 @@
 const mongoose = require("mongoose")
 const newsModel = require("../models/newsModel")
 const { logger } = require("../config/logConfig")
+const { dbConfig } = require("../config/config")
 
-const URI = process.env.MONGODB_URL
+const URI = dbConfig.mongoDBURL;
 
 async function updateVersionInDB(news, version) {
   try {
