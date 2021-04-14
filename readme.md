@@ -124,5 +124,7 @@ To monitor the status of the service deployed, open PM2 Dashboard
 ```bash
 pm2 monit
 ```
+#### For more PM2 commands 
 
+* [PM2 Documentation](https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/)
 
