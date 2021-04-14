@@ -67,14 +67,14 @@ module.exports.CRA = async (err) => {
     const text = `${config.textLine2} ${html_url}`
     const subject = `${config.appName} ${version} ${config.subjectPhrase}`
 
-    if (config.emailFeature && process.env.NODE_ENV === "production") {
+    if (config.emailFeature) {
       sendMail({ text, subject })
     }
   }
 }
 
 module.exports.handleFaliure = (e) => {
-  if (config.emailExceptions && process.env.NODE_ENV === "production") {
+  if (config.emailExceptions) {
     logger.info(e)
     sendMail({
       text: JSON.stringify(e),
