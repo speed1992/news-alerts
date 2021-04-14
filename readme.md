@@ -16,11 +16,20 @@ Change
 
 1) config/credentials.js 
 
+
+
 * Add sender's credentials
 ```javascript 
-username: "yourEmailAddress@gmail.com",
+username: "yourEmailAddress@gmail.com"
+```
+* Password must be escaped. Use this tool to escape your password [Escape Tool](https://www.freeformatter.com/javascript-escape.html)
+
+```javascript 
 escapedPassword: "your password"
 ```
+
+
+
 
 * Add emails to recipients
 ```javascript 
