@@ -60,7 +60,7 @@ dev_URL: "https://jsonblob.com/api/f13430d8-d313-11ea-bb09-433dc46d1195"
 
 ## Further references
 
-* Never commit crendtials.js, use the below method to always ignore credentials.js
+* Never commit crendtials.js, use the below method to configure git to always ignore credentials.js
 
 ```
 https://stackoverflow.com/questions/1753070/how-do-i-configure-git-to-ignore-some-files-locally
