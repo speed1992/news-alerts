@@ -3,7 +3,6 @@ const cron = require("node-cron")
 const { logger } = require("./config/logConfig")
 const { CRA, handleFaliure } = require("./utils/utils")
 const { connectWithDatabase } = require("./utils/dbutils")
-const { config } = require("./config/config")
 
 logger.info("\n\n\nApp Running on " + process.env.NODE_ENV + " environment\n\n\n");
 
