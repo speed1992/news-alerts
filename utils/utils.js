@@ -13,38 +13,41 @@ const getURL = () => {
   else return APIConfig.dev_URL
 }
 
-module.exports.getLatestDataFromGithub = async () => {
-  const URL = getURL()
+module.exports.getLatestDataFromGithub = () => {
+  return new Promise(async (resolve, reject) => {
+    const URL = getURL()
 
-  logger.info("Hitting " + URL)
+    logger.info("Hitting " + URL)
 
-  try {
-    const { data } = await axios.get(URL)
+    try {
+      const { data } = await axios.get(URL)
 
-    const { name: version } = data
+      const { name: version } = data
 
-    const status = await checkIfVersionExistsInDatabase(version)
+      const status = await checkIfVersionExistsInDatabase(version)
 
-    if (status === undefined) throw new Error("Status from db is undefined")
+      if (status === undefined) throw new Error("Status from db is undefined")
 
-    const newVersionExists = !status
+      const newVersionExists = !status
 
-    logger.info("New version exists? " + newVersionExists)
+      logger.info("New version exists? " + newVersionExists)
 
-    if (newVersionExists !== undefined && newVersionExists === true) {
-      logger.info("new version has come " + version)
-      return {
-        status: newVersionExists,
-        data: { ...data }
+      if (newVersionExists !== undefined && newVersionExists === true) {
+        logger.info("new version has come " + version)
+        resolve({
+          status: newVersionExists,
+          data: { ...data }
+        })
+      } else if (newVersionExists !== undefined && newVersionExists === false) {
+        // logger.info("version already exists")
+        resolve({ status: newVersionExists })
       }
-    } else if (newVersionExists !== undefined && newVersionExists === false) {
-      // logger.info("version already exists")
-      return { status: newVersionExists }
+    } catch (error) {
+      logger.info(error)
+      reject(error)
     }
-  } catch (error) {
-    logger.info(error)
-    throw error
-  }
+  });
+
 }
 
 module.exports.CRA = async (err) => {
@@ -57,7 +60,6 @@ module.exports.CRA = async (err) => {
 
   const response = await this.getLatestDataFromGithub()
   const { status: newVersionExists } = response
-
   if (newVersionExists !== undefined && newVersionExists === true) {
     const {
       // eslint-disable-next-line camelcase,no-unused-vars
@@ -66,7 +68,6 @@ module.exports.CRA = async (err) => {
     // eslint-disable-next-line camelcase
     const text = `${config.textLine2} ${html_url}`
     const subject = `${config.appName} ${version} ${config.subjectPhrase}`
-
     if (config.emailFeature) {
       sendMail({ text, subject })
     }

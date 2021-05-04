@@ -6,7 +6,7 @@ const { dbConfig } = require("../config/config")
 const URI = dbConfig.mongoDBURL;
 
 async function updateVersionInDB(news, version) {
-  return new Promise(async (_, reject) => {
+  return new Promise(async (resolve, reject) => {
     try {
       if (!news) {
         await newsModel.updateOne(
@@ -17,6 +17,7 @@ async function updateVersionInDB(news, version) {
           },
           { upsert: true }
         )
+        resolve();
       }
     } catch (e) {
       logger.info(e)
