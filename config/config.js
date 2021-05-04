@@ -1,5 +1,4 @@
 module.exports.config = {
-  appMode: "production",
   emailFeature: true,
   emailExceptions: true,
   textLine1: "New create-react-app version just got released",
@@ -10,7 +9,7 @@ module.exports.config = {
 }
 
 module.exports.APIConfig = {
-  dev_URL: "https://jsonblob.com/api/f13430d8-d313-11ea-bb09-433dc46d1195",
+  dev_URL: "https://jsonblob.com/api/d14686fe-ad24-11eb-8e44-d776b1fd8fae",
   prod_URL:
     "https://api.github.com/repos/facebook/create-react-app/releases/latest"
 }
