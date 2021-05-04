@@ -6,44 +6,48 @@ const { dbConfig } = require("../config/config")
 const URI = dbConfig.mongoDBURL;
 
 async function updateVersionInDB(news, version) {
-  try {
-    if (!news) {
-      await newsModel.updateOne(
-        { news_title: "create-react-app" },
-        {
-          news_title: "create-react-app",
-          info: version
-        },
-        { upsert: true }
-      )
+  return new Promise(async (_, reject) => {
+    try {
+      if (!news) {
+        await newsModel.updateOne(
+          { news_title: "create-react-app" },
+          {
+            news_title: "create-react-app",
+            info: version
+          },
+          { upsert: true }
+        )
+      }
+    } catch (e) {
+      logger.info(e)
+      reject(e);
     }
-  } catch (e) {
-    logger.info(e)
-    throw e
-  }
+  });
 }
 
-module.exports.checkIfVersionExistsInDatabase = async function (version) {
-  let status
-  version = version.trim()
-  await newsModel.findOne({ info: version }, async (err, news) => {
-    logger.info("news found?\n" + news)
-    logger.info("error " + err)
+module.exports.checkIfVersionExistsInDatabase = function (version) {
+  return new Promise((resolve, reject) => {
+    let status
+    version = version.trim()
+    newsModel.findOne({ info: version }, async (err, news) => {
+      logger.info("news found?\n" + news)
+      logger.info("error " + err)
 
-    if (!err) {
-      if (news) {
-        logger.info("No need for updating DB")
-        status = true
+      if (!err) {
+        if (news) {
+          logger.info("No need for updating DB")
+          status = true
+        } else {
+          status = false
+          logger.info("updating version in DB " + version)
+          await updateVersionInDB(news, version)
+        }
+        resolve(status)
       } else {
-        status = false
-        logger.info("updating version in DB " + version)
-        await updateVersionInDB(news, version)
+        reject(err);
       }
-    } else {
-      throw err
-    }
-  })
-  return status
+    })
+  });
 }
 
 module.exports.callbackWrapper = (callbackArray) => {
