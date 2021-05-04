@@ -5,10 +5,19 @@
 ```bash
 npm install
 ```
-## To start the app
+## To start the app 
+
+#### Production mode
 
 ```
 npm start
+```
+
+##### Note: Always run this app in dev mode. Production Github API takes only a restricted number of hits from one IP address. Running too many times in prod mode will exhaust the number of hits and the app will stop working.
+#### Development mode
+
+```
+npm run dev
 ```
 
 ## Complete Setup
@@ -43,19 +52,10 @@ escapedPassword: "your password"
 
 2) config/config.js
 
-for prod mode
-
-```javascript
-appMode: "production"
-```
 
 
+##### For dev mode
 
-for dev mode
-
-```javascript
-appMode: "dev"
-```
 * Supply new demo API URL, create a demo API, for example, using jsonblob.com 
 * copy API data from prod URL
 
@@ -63,7 +63,7 @@ appMode: "dev"
 https://api.github.com/repos/facebook/create-react-app/releases/latest
 ```
 
-Change dev url in config/config.js
+##### Change dev url in config/config.js
 ```javascript
 dev_URL: "https://jsonblob.com/api/f13430d8-d313-11ea-bb09-433dc46d1195"
 ```
