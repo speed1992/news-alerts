@@ -4,6 +4,7 @@ const { APIConfig, config } = require("../config/config")
 const { logger } = require("../config/logConfig")
 const { sendMail } = require("./mailUtils")
 const { credentials } = require("../config/credentials")
+const { slackSuccess, slackError } = require("./slack")
 
 const isEnvProduction = function () {
   return process.env.NODE_ENV === "production"
@@ -21,26 +22,26 @@ module.exports.getLatestDataFromGithub = () => {
 
     try {
       const { data } = await axios.get(URL)
-
       const { name: version } = data
 
       const status = await checkIfVersionExistsInDatabase(version)
-
       if (status === undefined) throw new Error("Status from db is undefined")
-
       const newVersionExists = !status
-
       logger.info("New version exists? " + newVersionExists)
 
       if (newVersionExists !== undefined && newVersionExists === true) {
+
         logger.info("new version has come " + version)
         resolve({
           status: newVersionExists,
           data: { ...data }
         })
+
       } else if (newVersionExists !== undefined && newVersionExists === false) {
-        // logger.info("version already exists")
+
+        logger.info("version already exists")
         resolve({ status: newVersionExists })
+
       }
     } catch (error) {
       logger.info(error)
@@ -69,6 +70,7 @@ module.exports.CRA = async (err) => {
     const text = `${config.textLine2} ${html_url}`
     const subject = `${config.appName} ${version} ${config.subjectPhrase}`
     if (config.emailFeature) {
+      slackSuccess(subject + "\n\n" + text);
       sendMail({ text, subject })
     }
   }
@@ -77,6 +79,9 @@ module.exports.CRA = async (err) => {
 module.exports.handleFailure = (e) => {
   if (config.emailExceptions) {
     logger.info("\n\n" + e + "\n\n")
+
+    slackError(e);
+
     sendMail({
       text: e,
       subject: "Failure in the news tool",
