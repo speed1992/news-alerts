@@ -74,7 +74,7 @@ module.exports.CRA = async (err) => {
   }
 }
 
-module.exports.handleFaliure = (e) => {
+module.exports.handleFailure = (e) => {
   if (config.emailExceptions) {
     logger.info("\n\n" + e + "\n\n")
     sendMail({

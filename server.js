@@ -1,7 +1,7 @@
 const cron = require("node-cron")
 
 const { logger } = require("./config/logConfig")
-const { CRA, handleFaliure } = require("./utils/utils")
+const { CRA, handleFailure } = require("./utils/utils")
 const { connectWithDatabase } = require("./utils/dbutils")
 
 logger.info("\n\n\nApp Running on " + process.env.NODE_ENV + " environment\n\n\n");
@@ -18,14 +18,14 @@ try {
     })
   }
 } catch (e) {
-  handleFaliure(e)
+  handleFailure(e)
 }
 
 process
   .on('unhandledRejection', (reason, p) => {
     const report = `${reason} Unhandled Rejection at Promise ${JSON.stringify(reason.stack)}`
-    handleFaliure(report);
+    handleFailure(report);
   })
   .on('uncaughtException', err => {
-    handleFaliure(JSON.stringify(err));
+    handleFailure(JSON.stringify(err));
   });
