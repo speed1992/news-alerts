@@ -20,3 +20,12 @@ try {
 } catch (e) {
   handleFaliure(e)
 }
+
+process
+  .on('unhandledRejection', (reason, p) => {
+    const report = `${reason} Unhandled Rejection at Promise ${JSON.stringify(reason.stack)}`
+    handleFaliure(report);
+  })
+  .on('uncaughtException', err => {
+    handleFaliure(JSON.stringify(err));
+  });

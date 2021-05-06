@@ -9,8 +9,8 @@ const send = require("gmail-send")({
   subject: "Latest version of create-react-app"
 })
 
-module.exports.sendMail = async ({ text, subject }) => {
-  send({ text, subject }, (error, result, fullResult) => {
+module.exports.sendMail = async (options) => {
+  send(options, (error, result, fullResult) => {
     if (error) logger.info(error)
     logger.info(result)
   })

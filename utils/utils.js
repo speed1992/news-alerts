@@ -76,9 +76,9 @@ module.exports.CRA = async (err) => {
 
 module.exports.handleFaliure = (e) => {
   if (config.emailExceptions) {
-    logger.info(e)
+    logger.info("\n\n" + e + "\n\n")
     sendMail({
-      text: JSON.stringify(e),
+      text: e,
       subject: "Failure in the news tool",
       bcc: credentials.errorRecipients
     })
