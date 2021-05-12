@@ -10,7 +10,7 @@ function getTime() {
 }
 
 function getDateAndTime() {
-    return this.getDate() + " " + this.getTime()
+    return getDate() + " " + getTime()
 }
 
 module.exports.getDateAndTime = getDateAndTime;
