@@ -14,7 +14,7 @@ function getTime() {
 }
 
 function getDateAndTime() {
-    return getDate() + " " + getTime()
+    return getDate()  + " " + getTime()
 }
 
 module.exports.getDateAndTime = getDateAndTime;
