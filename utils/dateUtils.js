@@ -5,8 +5,12 @@ function getDate() {
 }
 
 function getTime() {
-    const d = new Date();
-    return d.getHours() + ":" + String(d.getMinutes()).padStart(2, "0")
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, "0")
+    var ampm = hours >= 12 ? 'PM' : 'AM';
+
+    return date.getHours() + ":" + minutes + ampm;
 }
 
 function getDateAndTime() {
