@@ -84,12 +84,12 @@ module.exports.handleFailure = (e) => {
     logger.info("\n\n" + e + "\n\n")
 
     slackError(e);
-
-    sendMail({
-      text: e,
-      subject: "Failure in the news tool",
-      bcc: credentials.errorRecipients
-    })
+    if (isEnvProduction())
+      sendMail({
+        text: e,
+        subject: "Failure in the news tool",
+        bcc: credentials.errorRecipients
+      })
   }
 }
 

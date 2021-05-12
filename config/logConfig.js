@@ -1,4 +1,5 @@
 const { createLogger, format, transports } = require("winston")
+const { isEnvProduction } = require("../utils/utils")
 const { printf, colorize } = format
 
 const myFormat = printf(({ timestamp, level, message, meta }) => {
@@ -22,7 +23,7 @@ const logger = createLogger({
   ]
 })
 
-if (process.env.NODE_ENV !== "production") {
+if (!isEnvProduction()) {
   logger.add(
     new transports.Console({
       format: format.combine(format.colorize(), format.simple())
