@@ -3,8 +3,9 @@ const { checkIfVersionExistsInDatabase } = require("./dbutils")
 const { APIConfig, config } = require("../config/config")
 const { logger } = require("../config/logConfig")
 const { sendMail } = require("./mailUtils")
+const { getDateAndTime } = require("./dateUtils")
 const { credentials } = require("../config/credentials")
-const { slackSuccess, slackError } = require("./slack")
+const { slackSuccess, slackError, slackPing } = require("./slack")
 
 const isEnvProduction = function () {
   return process.env.NODE_ENV === "production"
@@ -74,6 +75,8 @@ module.exports.CRA = async (err) => {
       sendMail({ text, subject })
     }
   }
+  if (newVersionExists !== undefined)
+    slackPing("Successfully run at " + getDateAndTime());
 }
 
 module.exports.handleFailure = (e) => {

@@ -23,5 +23,10 @@ function slackSuccess(text) {
     run("#news", text)
 }
 
+function slackPing(text) {
+    run("#running-report", text)
+}
+
 module.exports.slackError = slackError;
 module.exports.slackSuccess = slackSuccess;
+module.exports.slackPing = slackPing;

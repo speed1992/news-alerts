@@ -9,7 +9,7 @@ module.exports.config = {
 }
 
 module.exports.APIConfig = {
-  dev_URL: "https://jsonblob.com/api/d14686fe-ad24-11eb-8e44-d776b1fd8fae1",
+  dev_URL: "https://jsonblob.com/api/d14686fe-ad24-11eb-8e44-d776b1fd8fae",
   prod_URL:
     "https://api.github.com/repos/facebook/create-react-app/releases/latest"
 }
