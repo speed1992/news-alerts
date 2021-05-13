@@ -19,7 +19,7 @@ try {
     connectWithDatabase([CRA]);
   }
   else {
-    slackPing(appStartedMessage + "at" + getDateAndTime());
+    slackPing(appStartedMessage + "at " + getDateAndTime());
     cron.schedule("0 0 * * * *", () => {
       connectWithDatabase([CRA])
     })
