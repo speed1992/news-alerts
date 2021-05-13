@@ -24,7 +24,7 @@ npm run dev
 
 #### Change 
 
-1) config/credentials.js 
+1) config/credentials.js.example to config/credentials.js
 
 
 
