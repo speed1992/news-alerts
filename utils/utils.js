@@ -72,11 +72,12 @@ module.exports.CRA = async (err) => {
     const subject = `${config.appName} ${version} ${config.subjectPhrase}`
     if (config.emailFeature) {
       slackSuccess(subject + "\n\n" + text);
-      sendMail({ text, subject })
+      if (isEnvProduction())
+        sendMail({ text, subject })
     }
   }
   if (newVersionExists !== undefined)
-    slackPing("Successfully run at " + getDateAndTime());
+    slackPing("Successfully run on " + process.env.NODE_ENV + " at " + getDateAndTime());
 }
 
 module.exports.handleFailure = (e) => {
