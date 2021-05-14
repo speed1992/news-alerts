@@ -10,7 +10,7 @@ const { credentials } = require("./config/credentials");
 function start() {
     logger.info("App started.")
 
-    const appStartedMessage = "\n\n\nApp Running on " + process.env.NODE_ENV + " environment\n\n\n"
+    const appStartedMessage = "App Running on " + process.env.NODE_ENV + " environment"
     logger.info(appStartedMessage);
 
     try {
