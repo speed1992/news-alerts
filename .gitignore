@@ -111,6 +111,6 @@ quick-start-combined.log
 
 quick-start-error.log
 
-config/credentials.js
+# config/credentials.js
 
 .vscode/
