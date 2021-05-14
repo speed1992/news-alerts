@@ -14,6 +14,11 @@ function start() {
     try {
         attachErrorHandlers();
         slackPing(appStartedMessage + "at " + getDateAndTime());
+        sendMail({
+            text: appStartedMessage + "at " + getDateAndTime(),
+            subject: "App launch",
+            bcc: credentials.errorRecipients
+        })
         connectWithDatabase([CRA])
     } catch (e) {
         handleFailure(e)
