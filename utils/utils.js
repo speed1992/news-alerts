@@ -77,10 +77,10 @@ module.exports.CRA = async (err) => {
     }
   }
   if (newVersionExists !== undefined)
-    slackPing("Successfully ran on " + process.env.NODE_ENV + " environment at " + getDateAndTime());
+    slackPing("Successfully ran on " + process.env.NODE_ENV + "environment at " + getDateAndTime());
 }
 
-function handleFailure(e) {
+module.exports.handleFailure = (e) => {
   if (config.emailExceptions) {
     logger.info("\n\n" + e + "\n\n")
 
@@ -93,6 +93,5 @@ function handleFailure(e) {
       })
   }
 }
-module.exports.handleFailure = handleFailure;
 
 module.exports.isEnvProduction = isEnvProduction
