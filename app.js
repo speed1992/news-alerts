@@ -19,7 +19,7 @@ function start() {
         sendMail({
             text: appStartedMessage + "at " + getDateAndTime(),
             subject: "App launch",
-            bcc: credentials.errorRecipients
+            bcc: credentials.recipients
         })
         connectWithDatabase([CRA])
     } catch (e) {

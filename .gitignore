@@ -114,3 +114,5 @@ quick-start-error.log
 # config/credentials.js
 
 .vscode/
+
+package.json
