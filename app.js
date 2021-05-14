@@ -4,6 +4,7 @@ const { connectWithDatabase } = require("./utils/dbutils");
 const { attachErrorHandlers } = require("./utils/globalExceptionHandlers");
 const { slackPing } = require("./utils/slack");
 const { getDateAndTime } = require("./utils/dateUtils");
+const { sendMail } = require("./utils/mailUtils");
 
 function start() {
     logger.info("App started.")
