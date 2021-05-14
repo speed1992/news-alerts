@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
   const log = "Route \"/\" hit. Ran successfully at " + getDateAndTime()
 
   sendMail({
-    text: appStartedMessage + "at " + getDateAndTime(),
+    text: log,
     subject: "App launch",
     bcc: credentials.recipients
   })
