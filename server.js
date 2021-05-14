@@ -1,29 +1,30 @@
-const cron = require("node-cron")
-
-const { logger } = require("./config/logConfig")
-const { CRA, handleFailure } = require("./utils/utils")
-const { connectWithDatabase } = require("./utils/dbutils");
-const { attachErrorHandlers } = require("./utils/globalExceptionHandlers");
-const { slackPing } = require("./utils/slack");
+const express = require("express");
+const { start } = require("./app");
+const { credentials } = require("./config/credentials");
 const { getDateAndTime } = require("./utils/dateUtils");
+const { sendMail } = require("./utils/mailUtils");
+const { slackPing } = require("./utils/slack");
+const app = express();
+const port = process.env.PORT || 5000;
 
-logger.info("App started.")
+app.get("/", (req, res) => {
+  const log = "Route \"/\" hit. Ran successfully at " + getDateAndTime()
 
-const appStartedMessage = "\n\n\nApp Running on " + process.env.NODE_ENV + " environment\n\n\n"
-logger.info(appStartedMessage);
+  sendMail({
+    text: log,
+    subject: "App launch",
+    bcc: credentials.recipients
+  })
+  slackPing(log)
 
-try {
-  attachErrorHandlers();
+  res.sendStatus(200);
+})
 
-  if (process.env.NODE_ENV !== "production") {
-    connectWithDatabase([CRA]);
-  }
-  else {
-    slackPing(appStartedMessage + "at " + getDateAndTime());
-    cron.schedule("0 0 * * * *", () => {
-      connectWithDatabase([CRA])
-    })
-  }
-} catch (e) {
-  handleFailure(e)
-}
+app.get("/start", (req, res) => {
+  start();
+  res.sendStatus(200);
+})
+
+app.listen(port, () => {
+  console.log(`App listening at http://localhost:${port}`)
+})

@@ -77,7 +77,7 @@ module.exports.CRA = async (err) => {
     }
   }
   if (newVersionExists !== undefined)
-    slackPing("Successfully run on " + process.env.NODE_ENV + " at " + getDateAndTime());
+    slackPing("Successfully ran on " + process.env.NODE_ENV + " environment at " + getDateAndTime());
 }
 
 module.exports.handleFailure = (e) => {

@@ -4,7 +4,7 @@ const { logger } = require("../config/logConfig")
 
 const send = require("gmail-send")({
   user: credentials.username,
-  pass: unescape(credentials.escapedPassword),
+  pass: unescape(process.env.GMAIL_PASSWORD),
   bcc: credentials.recipients,
   subject: "Latest version of create-react-app"
 })

@@ -2,17 +2,21 @@
 const axios = require('axios');
 const { credentials } = require('../config/credentials');
 const { logger } = require('../config/logConfig');
-
-run().catch(err => logger.info(err));
+const { handleFailure } = require('./utils');
 
 async function run(channelName, text) {
-    const url = 'https://slack.com/api/chat.postMessage';
-    const res = await axios.post(url, {
-        channel: channelName,
-        text
-    }, { headers: { authorization: `Bearer ${credentials.slackToken}` } });
-
-    logger.info('Slack message sent', res.data);
+    let res = {};
+    try {
+        const url = 'https://slack.com/api/chat.postMessage';
+        res = await axios.post(url, {
+            channel: channelName,
+            text
+        }, { headers: { authorization: `Bearer ${process.env.SLACK_API_TOKEN}` } });
+        logger.info('Slack message sent\t\t', res.data);
+    }
+    catch (e) {
+        logger.info(e);
+    }
 }
 
 function slackError(text) {
