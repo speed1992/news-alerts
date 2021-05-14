@@ -11,7 +11,7 @@ async function run(channelName, text) {
         res = await axios.post(url, {
             channel: channelName,
             text
-        }, { headers: { authorization: `Bearer ${credentials.slackToken}` } });
+        }, { headers: { authorization: `Bearer ${process.env.SLACK_API_TOKEN}` } });
         logger.info('Slack message sent\t\t', res.data);
     }
     catch (e) {
