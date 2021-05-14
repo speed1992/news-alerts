@@ -3,7 +3,7 @@ const { start } = require("./app");
 const { getDateAndTime } = require("./utils/dateUtils");
 const { slackPing } = require("./utils/slack");
 const app = express();
-const port = 80;
+const port = 3000;
 
 app.get("/", (req, res) => {
   slackPing("Route \"/\" hit. Ran successfully at " + getDateAndTime())
