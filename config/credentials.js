@@ -10,5 +10,5 @@ module.exports.credentials = {
     //  "rvishu35@gmail.com"
   ],
   errorRecipients: ["speed1992@gmail.com"],
-  slackToken: "xoxb-2050025082209-2034382831637-1poNL1KNcSVjDwjxkVduVNIO"
+  slackToken: "xoxb-2050025082209-2034382831637-FZMPhOeTcRthOrSQ6xoK01gF"
 }
