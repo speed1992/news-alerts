@@ -3,6 +3,7 @@ const { start } = require("./app");
 const { getDateAndTime } = require("./utils/dateUtils");
 const { slackPing } = require("./utils/slack");
 const app = express();
+const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
   slackPing("Route \"/\" hit. Ran successfully at " + getDateAndTime())
@@ -14,6 +15,6 @@ app.get("/start", (req, res) => {
   res.sendStatus(200);
 })
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
 })
