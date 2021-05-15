@@ -15,9 +15,9 @@ function start() {
 
     try {
         attachErrorHandlers();
-        slackPing(appStartedMessage + "at " + getDateAndTime());
+        slackPing(appStartedMessage + " at " + getDateAndTime());
         sendMail({
-            text: appStartedMessage + "at " + getDateAndTime(),
+            text: appStartedMessage + " at " + getDateAndTime(),
             subject: "App launch",
             bcc: credentials.recipients
         })
