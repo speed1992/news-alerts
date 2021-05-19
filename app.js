@@ -10,14 +10,14 @@ const { credentials } = require("./config/credentials");
 function start() {
     logger.info("App started.")
 
-    const appStartedMessage = "App Running on " + process.env.NODE_ENV + " environment"
+    const appStartedMessage = "App Running on " + process.env.NODE_ENV + " environment" + " at " + getDateAndTime()
     logger.info(appStartedMessage);
 
     try {
         attachErrorHandlers();
-        slackPing(appStartedMessage + "at " + getDateAndTime());
+        slackPing(appStartedMessage);
         sendMail({
-            text: appStartedMessage + "at " + getDateAndTime(),
+            text: appStartedMessage,
             subject: "App launch",
             bcc: credentials.recipients
         })
