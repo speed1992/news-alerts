@@ -33,9 +33,17 @@ npm run dev
 username: "yourEmailAddress@gmail.com"
 ```
 * Password must be escaped. Use this tool to escape your password [Escape Tool](https://www.freeformatter.com/javascript-escape.html)
+Password must be served through the environment variable GMAIL_PASSWORD
 
+##### package.json
 ```javascript 
-escapedPassword: "your password"
+start: "GMAIL_PASSWORD=yourPassword npm start"
+```
+* Slack API Token must be served through the environment variable SLACK_API_TOKEN
+
+##### package.json
+```javascript 
+start: "GMAIL_PASSWORD=yourPassword SLACK_API_TOKEN=xxxxxxxSlackAPITokenxxxxxx npm start"
 ```
 
 
