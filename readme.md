@@ -1,5 +1,7 @@
 # News Alerts
 
+This tool informs the user when a new create-react-app version releases using GMAIL/SLACK
+
 ## Installation
 
 ```bash
