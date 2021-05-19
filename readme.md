@@ -1,6 +1,6 @@
 # News Alerts
 
-This tool informs the user when a new create-react-app version releases using GMAIL/SLACK
+This tool informs the user when a new create-react-app version releases using email and slack.
 
 ## Installation
 
