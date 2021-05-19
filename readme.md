@@ -79,10 +79,11 @@ dev_URL: "https://jsonblob.com/api/f13430d8-d313-11ea-bb09-433dc46d1195"
 ```
 ## Debug
 
-Error logs are made at 
+Logs are made at 
 
 ```
 /quick-start-combined.log
+/quick-start-error.log
 ```
 
 
