@@ -37,13 +37,13 @@ Password must be served through the environment variable GMAIL_PASSWORD
 
 ##### package.json
 ```javascript 
-start: "GMAIL_PASSWORD=yourPassword npm start"
+    "dev": "cross-env NODE_ENV=development GMAIL_PASSWORD=yourPassword node server.js"
 ```
 * Slack API Token must be served through the environment variable SLACK_API_TOKEN
 
 ##### package.json
 ```javascript 
-start: "GMAIL_PASSWORD=yourPassword SLACK_API_TOKEN=xxxxxxxSlackAPITokenxxxxxx npm start"
+    "start": "cross-env NODE_ENV=development GMAIL_PASSWORD=yourPassword SLACK_API_TOKEN=xxxxxxxSlackAPITokenxxxxxx node server.js",
 ```
 
 
