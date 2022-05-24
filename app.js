@@ -7,7 +7,7 @@ const { getDateAndTime } = require("./utils/dateUtils");
 const { sendMail } = require("./utils/mailUtils");
 const { credentials } = require("./config/credentials");
 
-function start() {
+function start(res) {
     logger.info("App started.")
 
     const appStartedMessage = "App Running on " + process.env.NODE_ENV + " environment" + " at " + getDateAndTime()
@@ -21,7 +21,7 @@ function start() {
             subject: "App launch",
             bcc: credentials.recipients
         })
-        connectWithDatabase([CRA])
+        connectWithDatabase([()=> CRA(res)])
     } catch (e) {
         handleFailure(e)
     }
