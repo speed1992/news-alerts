@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/start", (req, res) => {
-  start();
+  start(res);
   res.sendStatus(200);
 })
 
