@@ -7,7 +7,7 @@ const { slackPing } = require("./utils/slack");
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
+app.get("/health", (req, res) => {
   const log = "Route \"/\" hit. Ran successfully at " + getDateAndTime()
 
   sendMail({
@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
   res.sendStatus(200);
 })
 
-app.get("/start", (req, res) => {
+app.get("/", (req, res) => {
   start(res);
   res.sendStatus(200);
 })
