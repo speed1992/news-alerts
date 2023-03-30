@@ -1,7 +1,7 @@
-const mongoose = require("mongoose")
-const newsModel = require("../models/newsModel")
-const { logger } = require("../config/logConfig")
-const { dbConfig } = require("../config/config")
+const mongoose = require("mongoose");
+const newsModel = require("../models/newsModel");
+const { logger } = require("../config/logConfig");
+const { dbConfig } = require("../config/config");
 
 const URI = dbConfig.mongoDBURL;
 
@@ -13,14 +13,14 @@ async function updateVersionInDB(news, version) {
           { news_title: "create-react-app" },
           {
             news_title: "create-react-app",
-            info: version
+            info: version,
           },
           { upsert: true }
-        )
+        );
         resolve();
       }
     } catch (e) {
-      logger.info(e)
+      logger.info(e);
       reject(e);
     }
   });
@@ -28,34 +28,34 @@ async function updateVersionInDB(news, version) {
 
 module.exports.checkIfVersionExistsInDatabase = function (version) {
   return new Promise((resolve, reject) => {
-    let status
-    version = version.trim()
+    let status;
+    version = version.trim();
     newsModel.findOne({ info: version }, async (err, news) => {
-      logger.info("news found?\n" + news)
-      logger.info("error " + err)
+      logger.info("news found?\n" + news);
+      logger.info("error " + err);
 
       if (!err) {
         if (news) {
-          logger.info("No need for updating DB")
-          status = true
+          logger.info("No need for updating DB");
+          status = true;
         } else {
-          status = false
-          logger.info("updating version in DB " + version)
-          await updateVersionInDB(news, version)
+          status = false;
+          logger.info("updating version in DB " + version);
+          await updateVersionInDB(news, version);
         }
-        resolve(status)
+        resolve(status);
       } else {
         reject(err);
       }
-    })
+    });
   });
-}
+};
 
 module.exports.callbackWrapper = (callbackArray) => {
   callbackArray.map((callback) => {
-    callback()
-  })
-}
+    callback();
+  });
+};
 module.exports.connectWithDatabase = (callbackArray) => {
   mongoose.connect(
     URI,
@@ -63,10 +63,11 @@ module.exports.connectWithDatabase = (callbackArray) => {
       useUnifiedTopology: true,
       useCreateIndex: true,
       useNewUrlParser: true,
-      useFindAndModify: false
+      useFindAndModify: false,
     },
     () => {
-      this.callbackWrapper(callbackArray)
+      logger.info("Inside mongo now");
+      this.callbackWrapper(callbackArray);
     }
-  )
-}
+  );
+};

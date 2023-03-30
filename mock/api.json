@@ -1,0 +1,53 @@
+{"data": {
+  "url": "https://api.github.com/repos/facebook/create-react-app/releases/64272000",
+  "assets_url": "https://api.github.com/repos/facebook/create-react-app/releases/64272000/assets",
+  "upload_url": "https://uploads.github.com/repos/facebook/create-react-app/releases/64272000/assets{?name,label}",
+  "html_url": "https://github.com/facebook/create-react-app/releases/tag/v5.0.1",
+  "id": 64272000,
+  "author": {
+    "login": "iansu",
+    "id": 433725,
+    "node_id": "MDQ6VXNlcjQzMzcyNQ==",
+    "avatar_url": "https://avatars.githubusercontent.com/u/433725?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/iansu",
+    "html_url": "https://github.com/iansu",
+    "followers_url": "https://api.github.com/users/iansu/followers",
+    "following_url": "https://api.github.com/users/iansu/following{/other_user}",
+    "gists_url": "https://api.github.com/users/iansu/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/iansu/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/iansu/subscriptions",
+    "organizations_url": "https://api.github.com/users/iansu/orgs",
+    "repos_url": "https://api.github.com/users/iansu/repos",
+    "events_url": "https://api.github.com/users/iansu/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/iansu/received_events",
+    "type": "User",
+    "site_admin": false
+  },
+  "node_id": "RE_kwDOA8mAYc4D1LaA",
+  "tag_name": "v5.0.1",
+  "target_commitish": "main",
+  "name": "v5.0.1",
+  "draft": false,
+  "prerelease": false,
+  "created_at": "2022-04-12T17:33:16Z",
+  "published_at": "2022-04-12T17:35:30Z",
+  "assets": [
+    
+  ],
+  "tarball_url": "https://api.github.com/repos/facebook/create-react-app/tarball/v5.0.1",
+  "zipball_url": "https://api.github.com/repos/facebook/create-react-app/zipball/v5.0.1",
+  "body": "## 5.0.1 (2022-04-12)\r\n\r\nCreate React App 5.0.1 is a maintenance release that improves compatibility with React 18. We've also updated our templates to use `createRoot` and relaxed our check for older versions of Create React App.\r\n\r\n# Migrating from 5.0.0 to 5.0.1\r\n\r\nInside any created project that has not been ejected, run:\r\n\r\n```\r\nnpm install --save --save-exact react-scripts@5.0.1\r\n```\r\n\r\nor\r\n\r\n```\r\nyarn add --exact react-scripts@5.0.1\r\n```\r\n\r\n#### :bug: Bug Fix\r\n\r\n- `react-scripts`\r\n  - [#12245](https://github.com/facebook/create-react-app/pull/12245) fix: webpack noise printed only if error or warning ([@Andrew47](https://github.com/Andrew47))\r\n- `create-react-app`\r\n  - [#11915](https://github.com/facebook/create-react-app/pull/11915) Warn when not using the latest version of create-react-app but do not exit ([@iansu](https://github.com/iansu))\r\n- `react-dev-utils`\r\n  - [#11640](https://github.com/facebook/create-react-app/pull/11640) Ensure posix compliant joins for urls in middleware ([@psiservices-justin-sullard](https://github.com/psiservices-justin-sullard))\r\n\r\n#### :nail_care: Enhancement\r\n\r\n- `cra-template-typescript`, `cra-template`, `react-scripts`\r\n  - [#12220](https://github.com/facebook/create-react-app/pull/12220) Update templates to use React 18 `createRoot` ([@kyletsang](https://github.com/kyletsang))\r\n- `cra-template-typescript`, `cra-template`\r\n  - [#12223](https://github.com/facebook/create-react-app/pull/12223) chore: upgrade rtl version to support react 18 ([@MatanBobi](https://github.com/MatanBobi))\r\n- `eslint-config-react-app`\r\n  - [#11622](https://github.com/facebook/create-react-app/pull/11622) updated deprecated rules ([@wisammechano](https://github.com/wisammechano))\r\n\r\n#### :memo: Documentation\r\n\r\n- [#11594](https://github.com/facebook/create-react-app/pull/11594) Fix a typo in deployment.md ([@fishmandev](https://github.com/fishmandev))\r\n- [#11805](https://github.com/facebook/create-react-app/pull/11805) docs: Changelog 5.0.0 ([@jafin](https://github.com/jafin))\r\n- [#11757](https://github.com/facebook/create-react-app/pull/11757) prevent both npm and yarn commands from being copied ([@mubarakn](https://github.com/mubarakn))\r\n\r\n#### :house: Internal\r\n\r\n- [#11985](https://github.com/facebook/create-react-app/pull/11985) Ignore docs when publishing ([@iansu](https://github.com/iansu))\r\n\r\n#### Committers: 11\r\n\r\n- Andrew Burnie ([@Andrew47](https://github.com/Andrew47))\r\n- Clément Vannicatte ([@shortcuts](https://github.com/shortcuts))\r\n- Dmitriy Fishman ([@fishmandev](https://github.com/fishmandev))\r\n- Dmitry Vinnik ([@dmitryvinn](https://github.com/dmitryvinn))\r\n- Ian Sutherland ([@iansu](https://github.com/iansu))\r\n- Jason Finch ([@jafin](https://github.com/jafin))\r\n- Kyle Tsang ([@kyletsang](https://github.com/kyletsang))\r\n- Matan Borenkraout ([@MatanBobi](https://github.com/MatanBobi))\r\n- Wisam Naji ([@wisammechano](https://github.com/wisammechano))\r\n- [@mubarakn](https://github.com/mubarakn)\r\n- [@psiservices-justin-sullard](https://github.com/psiservices-justin-sullard)",
+  "reactions": {
+    "url": "https://api.github.com/repos/facebook/create-react-app/releases/64272000/reactions",
+    "total_count": 114,
+    "+1": 42,
+    "-1": 0,
+    "laugh": 0,
+    "hooray": 34,
+    "confused": 0,
+    "heart": 36,
+    "rocket": 1,
+    "eyes": 1
+  }
+}}
