@@ -56,18 +56,14 @@ module.exports.callbackWrapper = (callbackArray) => {
     callback();
   });
 };
-module.exports.connectWithDatabase = (callbackArray) => {
-  mongoose.connect(
-    URI,
-    {
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useNewUrlParser: true,
-      useFindAndModify: false,
-    },
-    () => {
-      logger.info("Inside mongo now");
-      this.callbackWrapper(callbackArray);
-    }
-  );
+module.exports.connectWithDatabase = async (callbackArray) => {
+  await mongoose.connect(URI, {
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useFindAndModify: false,
+  });
+
+  logger.info("Inside mongo now");
+  this.callbackWrapper(callbackArray);
 };
