@@ -72,8 +72,6 @@ module.exports.CRA = async (err) => {
     const subject = `${config.appName} ${version} ${config.subjectPhrase}`
     if (config.emailFeature) {
       slackSuccess(subject + "\n\n" + text);
-      if (isEnvProduction())
-        sendMail({ text, subject })
     }
   }
   if (newVersionExists !== undefined)
@@ -85,12 +83,6 @@ module.exports.handleFailure = (e) => {
     logger.info("\n\n" + e + "\n\n")
 
     slackError(e);
-    if (isEnvProduction())
-      sendMail({
-        text: e,
-        subject: "Failure in the news tool",
-        bcc: credentials.errorRecipients
-      })
   }
 }
 

@@ -10,11 +10,6 @@ const port = process.env.PORT || 5000;
 app.get("/health", (req, res) => {
   const log = "Route \"/\" hit. Ran successfully at " + getDateAndTime()
 
-  sendMail({
-    text: log,
-    subject: "App launch",
-    bcc: credentials.recipients
-  })
   slackPing(log)
 
   res.sendStatus(200);
