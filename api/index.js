@@ -15,7 +15,7 @@ app.get("/health", (req, res) => {
   res.sendStatus(200);
 });
 
-app.get("/*", (req, res) => {
+app.get("/", (req, res) => {
   start(res);
   res.sendStatus(200);
 });
