@@ -5,7 +5,7 @@ const { getDateAndTime } = require("../utils/dateUtilss");
 const { sendMail } = require("../utils/mailUtilss");
 const { slackPing } = require("../utils/slackk");
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 80;
 
 app.get("/health", (req, res) => {
   const log = 'Route "/" hit. Ran successfully at ' + getDateAndTime();
