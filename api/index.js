@@ -1,9 +1,9 @@
 const express = require("express");
 const { start } = require("../app");
-const { credentials } = require("../config/credentials");
-const { getDateAndTime } = require("../utils/dateUtils");
-const { sendMail } = require("../utils/mailUtils");
-const { slackPing } = require("../utils/slack");
+const { credentials } = require("../config/credentialss");
+const { getDateAndTime } = require("../utils/dateUtilss");
+const { sendMail } = require("../utils/mailUtilss");
+const { slackPing } = require("../utils/slackk");
 const app = express();
 const port = process.env.PORT || 5000;
 
