@@ -17,7 +17,7 @@ function start(res) {
     " at " +
     getDateAndTime();
   logger.info(appStartedMessage);
-
+  console.log();
   try {
     attachErrorHandlers();
     // slackPing(appStartedMessage);
