@@ -8,18 +8,18 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.get("/health", (req, res) => {
-  const log = "Route \"/\" hit. Ran successfully at " + getDateAndTime()
+  const log = 'Route "/" hit. Ran successfully at ' + getDateAndTime();
 
-  slackPing(log)
+  slackPing(log);
 
   res.sendStatus(200);
-})
+});
 
 app.get("/", (req, res) => {
   start(res);
   res.sendStatus(200);
-})
+});
 
 app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`)
-})
+  console.log(`App listening at http://localhost:${port}`);
+});
