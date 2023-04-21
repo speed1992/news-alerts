@@ -20,7 +20,7 @@ function start(res) {
 
   try {
     attachErrorHandlers();
-    slackPing(appStartedMessage);
+    // slackPing(appStartedMessage);
     connectWithDatabase([() => CRA(res)]);
   } catch (e) {
     handleFailure(e);

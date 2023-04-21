@@ -27,27 +27,26 @@ async function updateVersionInDB(news, version) {
 }
 
 module.exports.checkIfVersionExistsInDatabase = function (version) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     let status;
     version = version.trim();
-    newsModel.findOne({ info: version }, async (err, news) => {
+    try {
+      const news = await newsModel.findOne({ info: version });
       logger.info("news found?\n" + news);
-      logger.info("error " + err);
-
-      if (!err) {
-        if (news) {
-          logger.info("No need for updating DB");
-          status = true;
-        } else {
-          status = false;
-          logger.info("updating version in DB " + version);
-          await updateVersionInDB(news, version);
-        }
-        resolve(status);
+      if (news) {
+        logger.info("No need for updating DB");
+        status = true;
       } else {
-        reject(err);
+        status = false;
+        logger.info("updating version in DB " + version);
+        await updateVersionInDB(news, version);
       }
-    });
+      resolve(status);
+    } catch (e) {
+      logger.info("error " + e);
+
+      reject(e);
+    }
   });
 };
 
@@ -58,10 +57,9 @@ module.exports.callbackWrapper = (callbackArray) => {
 };
 module.exports.connectWithDatabase = async (callbackArray) => {
   await mongoose.connect(URI, {
-    useUnifiedTopology: true,
-    useCreateIndex: true,
     useNewUrlParser: true,
-    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
   });
 
   logger.info("Inside mongo now");

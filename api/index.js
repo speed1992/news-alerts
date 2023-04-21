@@ -1,16 +1,16 @@
 const express = require("express");
 const { start } = require("../app");
-const { credentials } = require("../config/credentialss");
-const { getDateAndTime } = require("../utils/dateUtilss");
-const { sendMail } = require("../utils/mailUtilss");
-const { slackPing } = require("../utils/slackk");
+const { credentials } = require("../config/credentials");
+const { getDateAndTime } = require("../utils/dateUtils");
+const { sendMail } = require("../utils/mailUtils");
+const { slackPing } = require("../utils/slack");
 const app = express();
 const port = process.env.PORT || 80;
 
 app.get("/health", (req, res) => {
   const log = 'Route "/" hit. Ran successfully at ' + getDateAndTime();
 
-  slackPing(log);
+  // slackPing(log);
 
   res.sendStatus(200);
 });
