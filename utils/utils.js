@@ -70,13 +70,13 @@ module.exports.CRA = async (err) => {
       slackSuccess(subject + "\n\n" + text);
     }
   }
-  if (newVersionExists !== undefined)
-    // slackPing(
-    //   "Successfully ran on " +
-    //     process.env.NODE_ENV +
-    //     " environment at " +
-    //     getDateAndTime()
-    // );
+  // if (newVersionExists !== undefined)
+  // slackPing(
+  //   "Successfully ran on " +
+  //     process.env.NODE_ENV +
+  //     " environment at " +
+  //     getDateAndTime()
+  // );
 };
 
 module.exports.handleFailure = (e) => {
