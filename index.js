@@ -13,7 +13,7 @@ app.get("/health", (req, res) => {
   // slackPing(log);
 
   res.json({
-    message: 'Route "/health" hit. Ran successfully at ' + getDateAndTime(),
+    message: log,
   });
 });
 
