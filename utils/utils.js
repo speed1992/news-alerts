@@ -23,6 +23,7 @@ module.exports.getLatestDataFromGithub = () => {
 
     try {
       const { data } = await axios.get(URL);
+      logger.info("After getting response " + data.name);
       const { name: version } = data;
 
       const status = await checkIfVersionExistsInDatabase(version);
