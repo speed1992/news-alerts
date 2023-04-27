@@ -8,12 +8,12 @@ const app = express();
 const port = process.env.PORT || 80;
 
 app.get("/health", (req, res) => {
-  const log = 'Route "/" hit. Ran successfully at ' + getDateAndTime();
+  const message = 'Route "/" hit. Ran successfully at ' + getDateAndTime();
 
   // slackPing(log);
 
   res.json({
-    message: log,
+    message,
   });
 });
 
