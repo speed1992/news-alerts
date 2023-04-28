@@ -22,7 +22,11 @@ module.exports.getLatestDataFromGithub = () => {
     logger.info("Hitting " + URL);
 
     try {
-      const { data } = await axios.get(URL);
+      const { data } = await axios.get(URL, {
+        headers: {
+          "User-Agent": "request",
+        },
+      });
       logger.info("After getting response " + data.name);
       const { name: version } = data;
 
