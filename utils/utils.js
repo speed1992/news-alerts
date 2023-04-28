@@ -24,7 +24,7 @@ module.exports.getLatestDataFromGithub = () => {
     try {
       const { data } = await axios.get(URL, {
         headers: {
-          "User-Agent": "request",
+          "User-Agent": "news-alerts",
         },
       });
       logger.info("After getting response " + data.name);
